@@ -14,6 +14,8 @@ var process = require('./process');
 var minimist = require('minimist');
 var clsc = require('coalescy');
 
+var fromGulp = process.argv.some(a => a.indexOf('gulp') > -1);
+
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -87,7 +89,7 @@ var printSummary = function(hash, title, method) {
 module.exports = function(results) {
 
   var output = '\n',
-    success = '\n' + chalk.green('✔') + chalk.gray(' Success!'),
+    success = (fromGulp ? '' : '\n') + chalk.green('✔') + chalk.gray(' Success!'),
     total = 0,
     errors = 0,
     warnings = 0,
