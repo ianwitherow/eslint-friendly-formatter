@@ -87,6 +87,7 @@ var printSummary = function(hash, title, method) {
 module.exports = function(results) {
 
   var output = '\n',
+    success = '\n' + chalk.green('✔') + chalk.gray(' Success!'),
     total = 0,
     errors = 0,
     warnings = 0,
@@ -248,5 +249,5 @@ module.exports = function(results) {
     output = '\u001B]1337;CurrentDir=' + process.cwd() + '\u0007' + output;
   }
 
-  return total > 0 ? output : '';
+  return total > 0 ? output : success;
 };
