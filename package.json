@@ -2,7 +2,7 @@
   "name": "eslint-friendly-formatter",
   "version": "4.0.0",
   "description": " simple formatter/reporter for eslint that's friendly with Sublime Text and iterm2 'click to open file' functionality",
-  "repository": "royriojas/eslint-friendly-formatter",
+  "repository": "ianwitherow/eslint-friendly-formatter",
   "license": "MIT",
   "author": {
     "name": "Roy Riojas",
