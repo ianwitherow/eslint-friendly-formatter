@@ -93,6 +93,8 @@ module.exports = function(results) {
     total = 0,
     errors = 0,
     warnings = 0,
+    fixableErrors = 0,
+    fixableWarnings = 0,
     summaryColor = 'yellow';
 
   results = results || [];
@@ -114,6 +116,9 @@ module.exports = function(results) {
 
   results.forEach(function(result) {
     var messages = result.messages || [];
+    fixableErrors += result.fixableErrorCount;
+    fixableWarnings += result.fixableWarningCount;
+
     entries = entries.concat(messages.map(function(message) {
       return extend({
         filePath: absolutePathsToFile ? path.resolve(result.filePath) : path.relative('.', result.filePath)
@@ -226,7 +231,7 @@ module.exports = function(results) {
 
   if (total > 0) {
     output += chalk[summaryColor].bold([
-        '✘ ',
+        '✘  ',
         total,
         pluralize(' problem', total),
         ' (',
@@ -237,6 +242,23 @@ module.exports = function(results) {
         pluralize(' warning', warnings),
         ')'
       ].join('')) + chalk.white('\n');
+
+    if (fixableErrors + fixableWarnings > 0) {
+      output += chalk.yellow.bold([
+			'🔨 ',
+        fixableErrors + fixableWarnings,
+        pluralize(' problem', fixableErrors + fixableWarnings),
+        ' (',
+        fixableErrors,
+        pluralize(' error', fixableErrors),
+        ', ',
+        fixableWarnings,
+        pluralize(' warning', fixableWarnings),
+        ')',
+        ' fixable with --fix'
+      ].join('')) + chalk.white('\n');
+    }
+
 
     if (errors > 0) {
       output += printSummary(errorsHash, 'Errors', 'red');
