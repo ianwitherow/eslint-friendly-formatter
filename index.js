@@ -254,7 +254,7 @@ module.exports = function(results) {
     if (fixableErrors + fixableWarnings > 0) {
       output += '\n'
         + chalk.yellow.bold([
-			  "🔨 ",
+			  "⚡ ",
 			  fixableErrors + fixableWarnings,
 			  pluralize(" problem", fixableErrors + fixableWarnings),
 			  " (",
@@ -272,7 +272,7 @@ module.exports = function(results) {
   if (fixedFiles > 0) {
     output += [
       "\n",
-      chalk.yellow("🔨 "),
+      chalk.yellow("⚡ "),
       chalk[fixedColor](
         "Fixed " +
         fixedFiles +
