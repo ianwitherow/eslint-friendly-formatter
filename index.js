@@ -88,7 +88,7 @@ let printSummary = function(hash, title, method) {
 
 module.exports = function(results) {
   let output = "\n",
-    success = (fromGulp ? "" : "\n") + chalk.green("✔") + chalk.gray("  Success!"),
+    success = (fromGulp ? "" : "\n") + chalk.green("✔ Success!\n"),
     total = 0,
     errors = 0,
     warnings = 0,
@@ -272,8 +272,7 @@ module.exports = function(results) {
   if (fixedFiles > 0) {
     output += [
       "\n",
-      chalk.yellow("⚡ "),
-      chalk[fixedColor](
+      chalk.yellow("⚡ " +
         "Fixed " +
         fixedFiles +
         pluralize(" file", fixedFiles)
